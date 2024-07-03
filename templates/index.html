@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelacak Keuangan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <center><h1>Selamat Datang di Pelacak Keuangan</h1></center>
+        <form id="form" onclick="" action="{{ url_for('add_transaction') }}" method="POST">
+            <table align="center">
+                <tr>
+                    <th align="left"><label for="type">Jenis:</label></th>
+                    <td>
+                        <select name="type" id="type">
+                            <option value="income">Pemasukan</option>
+                            <option value="expense">Pengeluaran</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th align="left"><label for="category">Kategori:</label></th>
+                    <td><input type="text" name="category" id="category"></td>
+                </tr>
+                <tr>
+                    <th align="left"><label for="amount">Jumlah:</label></th>
+                    <td><input type="number" step="0.01" name="amount" id="amount"></td>
+                </tr>
+                <tr>
+                    <th align="left"><label for="description">Deskripsi:</label></th>
+                    <td><input type="text" name="description" id="description"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button type="submit">Tambahkan Transaksi</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <center><a href="{{ url_for('summary') }}">Lihat Ringkasan</a></center>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

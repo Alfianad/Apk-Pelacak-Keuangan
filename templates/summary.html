@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringkasan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <center><h1>Ringkasan Keuangan</h1></center>
+        <table align="center" class="summary-table">
+            <tr>
+                <th align="left">Total Pemasukan:</th>
+                <td>{{ income }}</td>
+            </tr>
+            <tr>
+                <th align="left">Total Pengeluaran:</th>
+                <td>{{ expense }}</td>
+            </tr>
+            <tr>
+                <th align="left">Sisa:</th>
+                <td>{{ balance }}</td>
+            </tr>
+        </table>
+        
+        <h2>Detail Pemasukan</h2>
+        <table align="center" class="detail-table">
+            <tr>
+                <th>ID</th>
+                <th>Kategori</th>
+                <th>Jumlah</th>
+                <th>Deskripsi</th>
+            </tr>
+            {% for transaction in income_transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.category }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h2>Detail Pengeluaran</h2>
+        <table align="center" class="detail-table">
+            <tr>
+                <th>ID</th>
+                <th>Kategori</th>
+                <th>Jumlah</th>
+                <th>Deskripsi</th>
+            </tr>
+            {% for transaction in expense_transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.category }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <center><a href="{{ url_for('index') }}">Kembali</a></center>
+    </div>
+</body>
+</html>
